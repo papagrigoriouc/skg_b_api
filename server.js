@@ -1,18 +1,19 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-
 const app = express(); 
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const property = require('./routes/property');
+const cors = require('cors');
 
+
+app.use(cors());
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-app.post('/user', (req, res, next)=>{
-    res.send('<h1>User:' + req.body.username + '</h1>');
-});
+// Routes
+app.use('/api/property', property);
 
-app.get('/', (req, res, next )=>{
-    res.send(
-        '<form action="/user"   method="POST"><input type="text" name="username"><button type="submit">Create User</button> </form>');
-        
-    });
+//Db config
+const con = mongoose.connect("mongodb://5.189.177.98:37017/realestate", {useNewUrlParser: true});
 
 app.listen(5000);
