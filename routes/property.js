@@ -1,25 +1,34 @@
 const express = require('express');
 const router = express.Router();
 const Property = require('../models/property');
+const mongoose = require('mongoose');
 
-router.get('/all', (req, res)=>{
-    Property.find().then(properties => res.send(properties));
+//Read all properties
+
+router.route('/all').get((req, res)=>{
+    Property.find((error, data)=>{
+        if (error){
+            return next(error)
+        }else {
+            res.json(data)
+        }
+    });
 });
 
-router.post('/create',(req, res)=>{
+//Cretae property
+
+router.route('/create').post((req, res, next)=>{
+    Property.create(req.body, (error, data)=>{
+        if (error){
+            return next(error);
+        }else {
+            console.log(data);
+            res.json(data);
+        }
+    })
     
-    const title = req.body.propertytitle;
-    const price = req.body.price;
-    const description = req.body.description;
-    const image = req.body.image;
-    const address = req.body.address;
-    const city = req.body.city;
-    const cords = [req.body.coordinates];
        
-    console.log(title);
-    // Property.create({
-    //     title, price, description, image, address, city, cords
-    // });
+   
 });
 
 
