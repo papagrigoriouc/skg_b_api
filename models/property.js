@@ -9,6 +9,9 @@ const PropertySchema = new Schema({
     propertytitle:{
         type: String,
     },
+    for:{
+        type: String,
+    },
     price:{
         type: String
     },

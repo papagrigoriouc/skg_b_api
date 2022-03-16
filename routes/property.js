@@ -15,7 +15,7 @@ router.route('/all').get((req, res)=>{
     });
 });
 
-//Cretae property
+//Create property
 
 router.route('/create').post((req, res, next)=>{
     Property.create(req.body, (error, data)=>{
@@ -26,8 +26,34 @@ router.route('/create').post((req, res, next)=>{
             res.json(data);
         }
     })
-    
-       
+
+// Delete property
+
+router.route('/delete/:id').delete((req, res, next)=>{
+    Property.findByIdAndRemove(req.params.id, (error, data)=>{
+        
+        if (error) {
+            
+            return next(error);
+            
+        } else {
+            
+            res.status(200).json({
+                msg:data                 
+            })            
+        }       
+    })
+})
+
+router.route('/one/:id').get((req, res)=>{
+    Property.findById(req.params.id, (error, data)=>{
+        if (error){
+            return next(error)
+        }else {
+            res.json(data)
+        }
+    });
+})
    
 });
 
