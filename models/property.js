@@ -7,10 +7,10 @@ const Schema = mongoose.Schema;
 const PropertySchema = new Schema({
 
     propertytitle:{
-        type: String,
+        type: String
     },
     for:{
-        type: String,
+        type: String
     },
     price:{
         type: String

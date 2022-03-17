@@ -48,7 +48,7 @@ router.route('/delete/:id').delete((req, res, next)=>{
 router.route('/one/:id').get((req, res)=>{
     Property.findById(req.params.id, (error, data)=>{
         if (error){
-            return next(error)
+           console.log(error);
         }else {
             res.json(data)
         }
