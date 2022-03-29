@@ -6,18 +6,29 @@ const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
 
-    name: {
-        type: String       
+    username: {
+        type: String,  
+        required: true     
     },
     avatar:{
         type: String
     },
     email: {
-        type: String        
+        type: String,
+        required: true        
     },
     password: {
-        type: String        
-    }
+        type: String,
+        required: true        
+    },
+    roles:{
+        User:{
+            type: Number,
+            default: 2001
+        },
+        Admin: Number
+    },
+    refreshToken: String
     
 });
 

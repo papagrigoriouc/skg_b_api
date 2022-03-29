@@ -26,12 +26,13 @@ router.route('/create').post((req, res, next)=>{
             res.json(data);
         }
     })
-
+});
 // Delete property
 
-router.route('/delete/:id').delete((req, res, next)=>{
+router.delete('/delete/:id',(req, res, next)=>{
+        console.log(req);
     Property.findByIdAndRemove(req.params.id, (error, data)=>{
-        
+        console.log(req.params.id);
         if (error) {
             
             return next(error);
@@ -39,7 +40,8 @@ router.route('/delete/:id').delete((req, res, next)=>{
         } else {
             
             res.status(200).json({
-                msg:data                 
+                msg:data,
+                msg1:'Property deleted'                 
             })            
         }       
     })
@@ -54,8 +56,7 @@ router.route('/one/:id').get((req, res)=>{
         }
     });
 })
-   
-});
+
 
 
 
