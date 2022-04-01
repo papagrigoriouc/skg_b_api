@@ -5,16 +5,23 @@ const mongoose = require('mongoose');
 const property = require('./routes/property');
 const register = require('./routes/register');
 const auth = require('./routes/auth');
+const refresh = require('./routes/refresh');
+const logout = require('./routes/logout');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
+app.use(cookieParser());
+
 // Routes
 app.use('/register', register);
 app.use('/auth', auth );
+app.use('/refresh', refresh);
+app.use('/logout', logout);
 app.use('/api/property', property);
 
 

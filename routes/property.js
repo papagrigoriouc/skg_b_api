@@ -1,12 +1,26 @@
 const express = require('express');
 const router = express.Router();
 const Property = require('../models/property');
+const Users = require('../models/user');
 const mongoose = require('mongoose');
+const verifyJWT = require('../middleware/verifyJWT');
 
 //Read all properties
 
-router.route('/all').get((req, res)=>{
+router.route('/all').get(verifyJWT,(req, res)=>{
     Property.find((error, data)=>{
+        if (error){
+            return next(error)
+        }else {
+            res.json(data)
+        }
+    });
+});
+
+//Read all users
+
+router.route('/users').get((req, res)=>{
+    Users.find((error, data)=>{
         if (error){
             return next(error)
         }else {
