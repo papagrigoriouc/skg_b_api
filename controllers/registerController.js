@@ -7,7 +7,7 @@ const handleNewUser = async (req, res) => {
 
     // check for duplicate usernames in the db
 
-    const duplicate = await user.findOne({username: user}).exec();
+    const duplicate = await User.findOne({username: user}).exec();
     if(duplicate) return res.sendStatus(409) //Conflict
 
     try {
@@ -15,7 +15,7 @@ const handleNewUser = async (req, res) => {
         const hashedPwd = await bcrypt.hash(pwd, 10);
 
         // create and store the new user
-        const result = await user.create({
+        const result = await User.create({
             "username": user,
             "password": hashedPwd
         });
@@ -31,4 +31,4 @@ const handleNewUser = async (req, res) => {
     }
 }
 
-module.export = {handleNewUser};
+module.exports = {handleNewUser};

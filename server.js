@@ -3,6 +3,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const property = require('./routes/property');
+const register = require('./routes/register');
+const auth = require('./routes/auth');
 const cors = require('cors');
 
 
@@ -11,7 +13,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 // Routes
+app.use('/register', register);
+app.use('/auth', auth );
 app.use('/api/property', property);
+
+
 
 
 //Db config
