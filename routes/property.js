@@ -7,7 +7,7 @@ const verifyJWT = require('../middleware/verifyJWT');
 
 //Read all properties
 
-router.route('/all').get(verifyJWT,(req, res)=>{
+router.route('/all').get((req, res)=>{
     Property.find((error, data)=>{
         if (error){
             return next(error)
