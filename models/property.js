@@ -6,14 +6,14 @@ const Schema = mongoose.Schema;
 
 const PropertySchema = new Schema({
 
-    propertytitle:{
+    category:{
         type: String
     },
     for:{
         type: String
     },
     price:{
-        type: String
+        type: Number
     },
     description:{
         type: String
@@ -29,6 +29,9 @@ const PropertySchema = new Schema({
     },
     city:{
         type: String
+    },
+    area:{
+        type: Number
     }
 });
 
